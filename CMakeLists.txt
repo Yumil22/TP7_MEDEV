@@ -28,21 +28,25 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 
+file(GLOB_RECURSE TESTS_FILES
+    "tests/**.cc"
+)
+
 enable_testing()
 
 # testing
 add_executable(
-  hello_test
-  tests/hello_test.cc
+  tests
+  ${TESTS_FILES}
 )
 # link google test to the executable
 target_link_libraries(
-  hello_test
+  tests
   gtest_main
 )
 
 include(GoogleTest)
-gtest_discover_tests(hello_test)
+gtest_discover_tests(tests)
 
 
 # main program part
@@ -61,6 +65,7 @@ file(GLOB_RECURSE HEADER_FILES
     "src/**.h"
 )
 
+
 # Allow include to use paths relative to projct root
 include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/src)
@@ -74,3 +79,4 @@ MESSAGE(STATUS "Include dirs ${OpenCV_INCLUDE_DIRS}")
 MESSAGE(STATUS "LINK LIBRARIES ${OpenCV_LIBS}")
 include_directories(${OpenCV_INCLUDE_DIRS})
 target_link_libraries(jpeg ${OpenCV_LIBS})
+target_link_libraries(tests ${OpenCV_LIBS})
