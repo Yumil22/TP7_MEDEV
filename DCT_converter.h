@@ -34,11 +34,14 @@ private:
     ///Les blocs ainsi obtenus seront stockés dans un vecteur de matrices.
     vector<Mat> separateMatrix(Mat yiq_matrix);
 
-    // Décompression : Regrouper les matrices séparées
+    ///MéthoderecombineMatrix qui prend en argument un vecteur de matrices blocs NxN YIQ, et qui les recombine lors de la décompression. 
     Mat recombineMatrix(vector<Mat> split_matrix);
 
 public:
+    ///Constructeur 
     DCT_Converter();
+    ///Méthode principale en mode compression qui va comprendre, l'ouverture de fichier, la conversion RGB vers YIQ, puis la transformée DCT par blocs.
     vector<Mat> getDCTMatrixConverted(string fileName);
+    ///Méthode principale en mode décompression qui va comprendre, le transformée inverse DCT de chaque blocs déqquantifiés, puis la recombinaison des blocs, en enfin la conversion YIQ vers RGB.
     Mat deconvert(vector<Mat> dequantified_matrix);
 };
