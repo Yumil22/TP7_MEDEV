@@ -34,10 +34,17 @@ file(GLOB_RECURSE TESTS_FILES
 
 enable_testing()
 
+# Main project sources, without main
+file(GLOB_RECURSE SRC_FILES
+    "src/**.cpp"
+)
+list(REMOVE_ITEM SRC_FILES ${SRC_MAIN})
+
 # testing
 add_executable(
   tests
   ${TESTS_FILES}
+  ${SRC_FILES}
 )
 # link google test to the executable
 target_link_libraries(
@@ -55,11 +62,7 @@ file(GLOB SRC_MAIN
     "src/JPEG.cpp"
 )
 
-# Main project sources, without main
-file(GLOB_RECURSE SRC_FILES
-    "src/**.cpp"
-)
-list(REMOVE_ITEM SRC_FILES ${SRC_MAIN})
+
 
 file(GLOB_RECURSE HEADER_FILES
     "src/**.h"
