@@ -108,3 +108,19 @@ vector<Mat> DCT_converter::separateMatrix(Mat yiq_matrix) {
 
 	return blocks;
 }
+
+//fonction qui convertit l'image YIQ en RGB
+Mat DCT_converter::RGB_conversion(Mat yiq_matrix)
+{
+	Mat image_RGB;
+	for (int i = 0; i < yiq_matrix.rows; i++)
+	{
+		for (int i = 0; i < yiq_matrix.cols; j++)
+		{
+			image_RGB.at<Vec3b>(i, j) = yiq_to_rgb * yiq_matrix.at<Vec3b>(i, j);
+		}
+	}
+
+	return image_RGB;
+}
+
