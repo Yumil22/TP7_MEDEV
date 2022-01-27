@@ -48,6 +48,8 @@ vector<Mat> DCT_Converter::getDCTMatrixConverted(string fileName) {
 }
 
 
+///Pour effectuer la transformée inverse, nous avons récupérer les coordonnée YIQ de chaque bloc, dans des matrices de float, pour pouvoir les multiplier facilement avec les matrices de transformées.
+///Ensuite, nous avons restocker chaque valeur de YIQ transformées dans une matrice contenant des vecteurs 3 (matrice image YIQ = DCT_Reverse_Output)
 Mat DCT_Converter::deconvert(vector<Mat> dequantified_matrix){
 	Mat DCT_Reverse;
 	vector<Mat> DCT_Reverse_Matrixs;
