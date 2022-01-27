@@ -1,6 +1,6 @@
 ﻿#include "huff_tree.h"
 
-Huffmann::Huffmann(std::string) {
+Huffmann::Huffmann(std::vector<std::string> messages) {
 	treeRoot = new Huff_tree();
 	compressedMessage = {};
 
@@ -11,7 +11,7 @@ Huff_tree* Huffmann::getTreeRoot() {
 	return treeRoot;
 }
 
-td::vector<std::vector<bool>> Huffmann::getByteCodes() {
-	return compressedMessage;
+std::vector<std::vector<bool>> Huffmann::getByteCodes() {
+	return compressedMessages;
 }
 
