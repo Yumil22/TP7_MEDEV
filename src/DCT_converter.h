@@ -39,6 +39,16 @@ private:
 public:
     ///Constructeur 
     DCT_Converter();
+    ///Getter dct_matrix;
+    Mat getDCT_Matrix(){ return  dct_matrix;}
+    ///Getter t_dct_matrix;
+    Mat gett_DCT_Matrix(){return t_dct_matrix;}
+    ///Getter rgb_to_yiq;
+    Mat getrRGB_to_YIQ(){return rgb_to_yiq;}
+    ///Getter yiq_to_rgb;
+    Mat getrYIQ_to_RGB(){return yiq_to_rgb;}
+
+
     ///Méthode principale en mode compression qui va comprendre, l'ouverture de fichier, la conversion RGB vers YIQ, puis la transformée DCT par blocs.
     vector<Mat> getDCTMatrixConverted(string fileName);
     ///Méthode principale en mode décompression qui va comprendre, le transformée inverse DCT de chaque blocs déqquantifiés, puis la recombinaison des blocs, en enfin la conversion YIQ vers RGB.
