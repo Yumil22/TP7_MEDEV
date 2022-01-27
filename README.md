@@ -9,7 +9,11 @@ Objectif: compresser et décompresser une image
 Compilation CMake :
 
 Le projet s'appelle JPEG.  
-Les tests unitaires doivent se trouver dans un dossier tests, et s'appeler tests.cpp (path = ./tests/tests.cpp)  
-Les fichiers sources doivent se trouver dans un dossier src, et la fonction main est dans main.cpp (path = ./src/main.cpp)  
-Le CMake sera à mettre à jour selon comment GoogleTests sera inclus.  
-Lisez le CMakeLists pour plus de détails
+Les tests se font dans .tests/hello_test.cc.
+Les fichiers sources doivent se trouver dans le dossier src, et la fonction main est dans JEPG.cpp (path = ./src/JPEG.cpp)  
+
+
+## Pour pouvoir run un projet (jpeg ou hello_test) :
+
+![image](https://user-images.githubusercontent.com/92569910/151330758-b209b01b-c80e-489a-a614-936ca3c02147.png)
+

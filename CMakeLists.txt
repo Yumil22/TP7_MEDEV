@@ -1,45 +1,58 @@
-# 1. Indicate the required version of CMake (we want version 3.0) :
-# ...
-
-CMAKE_MINIMUM_REQUIRED ( VERSION 3.0 )
-
-# 2. Indicate the name of the project :
-# ...
-
-project ( JPEG )
-
-# Binaries will be saved there
-# ${PROJECT_SOURCE_DIR} is a variable, it is the top level source directory for the current project.
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/build)
-
-set(CMAKE_CXX_STANDARD 11) # set Cpp11
-
-# Set coverage compilation option if in UNIX
-if (UNIX)
-    find_program(GCOV_PATH gcov REQUIRED)
-    find_program(LCOV_PATH lcov REQUIRED)
-    set(CMAKE_CXX_FLAGS "--coverage")
-endif(UNIX)
-
-# Allow include to use paths relative to project root
-
-include_directories(${PROJECT_SOURCE_DIR})
-include_directories(${PROJECT_SOURCE_DIR}/googletest/googletest/include) # add the include directory of google test
-find_package ( OpenCV REQUIRED )
-#TODO : update path
+# to execute, be in root folder (NOT build)
+#  cmake -S . -B build
+#  cmake --build build
+#
+# to run tests go in build : cd build
+# then run test by typing : ctest
+#
+#
 
 
 
-# create target
-# 3. Uncomment these two next lines and complete them.
-# The first executable is for running the tests, add all needed files for the tests.
-# The second executable is for running the main code, add all needed files for the code to compile.
-# Note : you can write all files by hand or use file(GLOB...) or file(GLOB_RECURSE...)
+# updated from https://google.github.io/googletest/quickstart-cmake.html
 
+cmake_minimum_required(VERSION 3.14)
+project(jpeg)
+
+# GoogleTest requires at least C++11
+set(CMAKE_CXX_STANDARD 11)
+
+# directly fetch google test from github
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+
+file(GLOB_RECURSE TESTS_FILES
+    "tests/**.cc"
+)
+
+enable_testing()
+
+# testing
+add_executable(
+  tests
+  ${TESTS_FILES}
+)
+# link google test to the executable
+target_link_libraries(
+  tests
+  gtest_main
+)
+
+include(GoogleTest)
+gtest_discover_tests(tests)
+
+
+# main program part
 # Main project entry point
 file(GLOB SRC_MAIN
-    "src/main.cpp"
+    "src/JPEG.cpp"
 )
 
 # Main project sources, without main
@@ -48,20 +61,21 @@ file(GLOB_RECURSE SRC_FILES
 )
 list(REMOVE_ITEM SRC_FILES ${SRC_MAIN})
 
-# Tests sources
-file(GLOB GTESTS
-    "tests/**.cpp"
+file(GLOB_RECURSE HEADER_FILES
+    "src/**.h"
 )
 
-# create target
-add_executable(project ${SRC_MAIN} ${SRC_FILES})
-add_executable(run_tests tests/tests.cpp ${GTESTS} ${SRC_FILES})
-add_executable(tests_DCT tests/tests_DCT.cpp ${GTESTS} ${SRC_FILES})
 
-# link gtest (and pthread on Unix) to run_tests project
-target_link_libraries(run_tests ${CMAKE_SOURCE_DIR}/build_gtest/lib/libgtest.a)
-target_link_libraries(tests_DCT ${CMAKE_SOURCE_DIR}/build_gtest/lib/libgtest.a ${OpenCV_LIBS})
+# Allow include to use paths relative to projct root
+include_directories(${PROJECT_SOURCE_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/src)
 
-# link projet principale
-target_link_libraries(project ${OpenCV_LIBS})
-#TODO : update path
+
+
+add_executable(jpeg ${SRC_MAIN} ${SRC_FILES} ${HEADER_FILES})
+
+find_package( OpenCV REQUIRED )
+MESSAGE(STATUS "Include dirs ${OpenCV_INCLUDE_DIRS}")
+MESSAGE(STATUS "LINK LIBRARIES ${OpenCV_LIBS}")
+include_directories(${OpenCV_INCLUDE_DIRS})
+target_link_libraries(jpeg ${OpenCV_LIBS})
