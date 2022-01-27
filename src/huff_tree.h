@@ -1,12 +1,17 @@
-class Huff_tree
+struct Huff_tree
 {
-public:
-    Huff_tree(){
-        fils0 = nullptr;
-        fils1 = nullptr;
-    }
-    
-    Huff_tree* fils0;
-    Huff_tree* fils1;
-    float val;
+    Huff_tree* fils0 = nullptr;
+    Huff_tree* fils1 = nullptr;
+    char val = '';
+};
+
+class Huffmann
+{
+public :
+    Huff_tree* treeRoot;
+    std::vector<std::byte> compressedMessage;
+
+    Huffmann(std::string);
+    Huff_tree* getTreeRoot();
+    std::vector<std::byte> getByteCodes();
 };
