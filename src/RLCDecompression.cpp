@@ -53,6 +53,26 @@ void RLCDecompression(string codage, Mat& matrice) {
             }
         }
     }
+    // Traiter la dernière valeur
+    // traitement du nombre
+    int countInt = stoi(count);
+    // remplir la matrice
+    int futurNombreTraite = nombreTraite + countInt;
+    int k = 0;
+    int n = matrice.rows;
+    for (int i = 0; i < 2 * n; ++i) {
+        for (int j = (i < n) ? 0 : i - n + 1; j <= i && j < n; ++j) {
+            if (k >= nombreTraite && k < futurNombreTraite) {
+                if (i % 2 == 1) {
+                    matrice.at<int>(j, i - j) = valueInt;
+                }
+                else {
+                    matrice.at<int>(i-j, j) = valueInt;
+                }
+            }
+            k++;
+        }
+    }
 
 }
 
