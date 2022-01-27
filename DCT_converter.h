@@ -22,16 +22,16 @@ private:
     /// Entier constant qui définit la taille des blocs (ici 8)
     const int N = 8;
 
-    // Compression : Lecture de fichier image (BMP)
+
+    ///Méthode openBMP qui prend en argument le nom du fichier cible, qui l'ouvre et qui le stocke dans une matrice. 
+    ///Le mode est initialement en RGB.
     Mat openBMP(string fileName);
-
-    // Compression : Convertir image RGB à YIQ
+    ///Méthode YIQ_conversion qui prend en argument une matrice d'image en mode RGB et qui la convertit en une matrice d'image en mode YIQ
     Mat YIQ_conversion(Mat rgb_matrix);
-
-    // Décompresiion : Convertir image YIQ à RGB
+    ///Méthode RGB_conversion qui prend en argument une matrice d'image en mode YIQ et qui la convertit en une matrice d'image en mode RGB
     Mat RGB_conversion(Mat yiq_matrix);
-
-    // Compression : Découper matrice principale en taille NxN
+    ///Méthode separateMatrix qui prend en argument une matrice d'image en mode YIQ, et qui va la diviser en blocs de matrice de taille NxN (8x8).
+    ///Les blocs ainsi obtenus seront stockés dans un vecteur de matrices.
     vector<Mat> separateMatrix(Mat yiq_matrix);
 
     // Décompression : Regrouper les matrices séparées
