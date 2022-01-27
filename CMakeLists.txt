@@ -1,4 +1,15 @@
-﻿# updated from https://google.github.io/googletest/quickstart-cmake.html
+# to execute, be in root folder (NOT build)
+#  cmake -S . -B build
+#  cmake --build build
+#
+# to run tests go in build : cd build
+# then run test by typing : ctest
+#
+#
+
+
+
+# updated from https://google.github.io/googletest/quickstart-cmake.html
 
 cmake_minimum_required(VERSION 3.14)
 project(jpeg)
@@ -37,7 +48,7 @@ gtest_discover_tests(hello_test)
 # main program part
 # Main project entry point
 file(GLOB SRC_MAIN
-    "JPEG.cpp"
+    "src/JPEG.cpp"
 )
 
 # Main project sources, without main
@@ -48,6 +59,7 @@ list(REMOVE_ITEM SRC_FILES ${SRC_MAIN})
 
 # Allow include to use paths relative to projct root
 include_directories(${PROJECT_SOURCE_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
 
 
