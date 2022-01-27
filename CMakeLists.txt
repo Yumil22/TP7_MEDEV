@@ -57,13 +57,17 @@ file(GLOB_RECURSE SRC_FILES
 )
 list(REMOVE_ITEM SRC_FILES ${SRC_MAIN})
 
+file(GLOB_RECURSE HEADER_FILES
+    "src/**.h"
+)
+
 # Allow include to use paths relative to projct root
 include_directories(${PROJECT_SOURCE_DIR})
-include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/src)
 
 
 
-add_executable(jpeg ${SRC_MAIN} ${SRC_FILES})
+add_executable(jpeg ${SRC_MAIN} ${SRC_FILES} ${HEADER_FILES})
 
 find_package( OpenCV REQUIRED )
 MESSAGE(STATUS "Include dirs ${OpenCV_INCLUDE_DIRS}")
