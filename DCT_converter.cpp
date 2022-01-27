@@ -15,6 +15,7 @@ Mat DCT_Converter::YIQ_conversion(Mat rgb_matrix)
 				I += rgb_to_yiq.at<float>(1, l) * rgb_matrix.at<Vec3b>(i, j)[l];
 				Q += rgb_to_yiq.at<float>(2, l) * rgb_matrix.at<Vec3b>(i, j)[l];
 			}
+
 			image_YIQ.at<Vec3b>(i, j)[0] = Y;
 			image_YIQ.at<Vec3b>(i, j)[1] = I;
 			image_YIQ.at<Vec3b>(i, j)[2] = Q;

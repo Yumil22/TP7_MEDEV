@@ -37,7 +37,10 @@ DCT_Converter::DCT_Converter() {
         }
     }
 
-	//initialisation de la mtrice rgb_to_yiq
+	//initialisation de la matrice t_dct_matrix l'inverse de dct_matrix
+	transpose(dct_matrix, t_dct_matrix);
+
+	//initialisation de la matrice rgb_to_yiq
 	rgb_to_yiq.at<float>(0, 0) = 0.211456;
 	rgb_to_yiq.at<float>(0, 1) = -0.522591;
 	rgb_to_yiq.at<float>(0, 2) = 0.31135;
