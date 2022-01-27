@@ -6,6 +6,7 @@
 using namespace std;
 using namespace cv;
 
+/// CLASSE DCT_CONVERTER
 
 class DCT_Converter{
 
@@ -23,6 +24,7 @@ private:
     Mat recombineMatrix(vector<Mat> split_matrix);
 
 public:
+    DCT_Converter()
     vector<Mat> getDCTMatrixConverted(string fileName);
     Mat deconvert(vector<Mat> dequantified_matrix);
 };
