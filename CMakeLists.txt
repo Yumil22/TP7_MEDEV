@@ -1,24 +1,67 @@
-cmake_minimum_required ( VERSION 2.8)
-project ( MEDRV_TP7 )
+# 1. Indicate the required version of CMake (we want version 3.0) :
+# ...
 
-# sources extension
-set(SRCEXT "cpp")
+CMAKE_MINIMUM_REQUIRED ( VERSION 3.0 )
 
-# setting the compiler to c++11
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+# 2. Indicate the name of the project :
+# ...
+
+project ( JPEG )
+
+# Binaries will be saved there
+# ${PROJECT_SOURCE_DIR} is a variable, it is the top level source directory for the current project.
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/build)
+
+set(CMAKE_CXX_STANDARD 11) # set Cpp11
+
+# Set coverage compilation option if in UNIX
+if (UNIX)
+    find_program(GCOV_PATH gcov REQUIRED)
+    find_program(LCOV_PATH lcov REQUIRED)
+    set(CMAKE_CXX_FLAGS "--coverage")
+endif(UNIX)
+
+# Allow include to use paths relative to project root
+
+include_directories(${PROJECT_SOURCE_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/googletest/googletest/include) # add the include directory of google test
+find_package ( OpenCV REQUIRED )
+#TODO : update path
 
 
-file(
-    GLOB_RECURSE
-    source_files
-    *.${SRCEXT}
+
+# create target
+# 3. Uncomment these two next lines and complete them.
+# The first executable is for running the tests, add all needed files for the tests.
+# The second executable is for running the main code, add all needed files for the code to compile.
+# Note : you can write all files by hand or use file(GLOB...) or file(GLOB_RECURSE...)
+
+# Main project entry point
+file(GLOB SRC_MAIN
+    "src/main.cpp"
 )
 
-# required packages
-find_package ( OpenCV REQUIRED )
+# Main project sources, without main
+file(GLOB_RECURSE SRC_FILES
+    "src/**.cpp"
+)
+list(REMOVE_ITEM SRC_FILES ${SRC_MAIN})
 
-# adding the source files to the executable
-add_executable(MEDRV_TP7  DTC_converter.cpp)
+# Tests sources
+file(GLOB GTESTS
+    "tests/**.cpp"
+)
 
-# linking other libraries
-target_link_libraries(MEDRV_TP7   ${OpenCV_LIBS})
+# create target
+add_executable(project ${SRC_MAIN} ${SRC_FILES})
+add_executable(run_tests tests/tests.cpp ${GTESTS} ${SRC_FILES})
+add_executable(tests_DCT tests/tests_DCT.cpp ${GTESTS} ${SRC_FILES})
+
+# link gtest (and pthread on Unix) to run_tests project
+target_link_libraries(run_tests ${CMAKE_SOURCE_DIR}/build_gtest/lib/libgtest.a)
+target_link_libraries(tests_DCT ${CMAKE_SOURCE_DIR}/build_gtest/lib/libgtest.a ${OpenCV_LIBS})
+
+# link projet principale
+target_link_libraries(project ${OpenCV_LIBS})
+#TODO : update path
