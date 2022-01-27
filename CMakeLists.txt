@@ -20,13 +20,17 @@ if (UNIX)
     find_program(GCOV_PATH gcov REQUIRED)
     find_program(LCOV_PATH lcov REQUIRED)
     set(CMAKE_CXX_FLAGS "--coverage")
-endif(UNIX)
+endif(UNIX) 
+
+find_package( OpenCV REQUIRED PATHS "C:/Dev/OpenCV-4.5.2/Debug")
 
 # Allow include to use paths relative to project root
 
 include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/googletest/googletest/include) # add the include directory of google test
 #TODO : update path
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+
 
 
 
@@ -57,5 +61,6 @@ add_executable(project ${SRC_MAIN} ${SRC_FILES})
 add_executable(run_tests tests/tests.cpp ${GTESTS} ${SRC_FILES})
 
 # link gtest (and pthread on Unix) to run_tests project
-target_link_libraries(run_tests ${CMAKE_SOURCE_DIR}/build_gtest/lib/libgtest.a)
+target_link_libraries(run_tests ${CMAKE_SOURCE_DIR}/build_gtest/lib/libgtest.a ${OpenCV_LIBS}) 
 #TODO : update path
+target_link_libraries(project ${OpenCV_LIBS})
