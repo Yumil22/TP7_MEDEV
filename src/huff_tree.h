@@ -1,3 +1,8 @@
+#pragma once
+
+#include <vector>
+#include <cstddef>
+
 struct Huff_tree
 {
     Huff_tree* fils0 = nullptr;
