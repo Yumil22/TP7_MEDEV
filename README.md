@@ -9,8 +9,8 @@ Objectif: compresser et décompresser une image
 Compilation CMake :
 
 Le projet s'appelle JPEG.  
-Les tests se font dans hello_test.cc 
-Les fichiers sources doivent se trouver dans un dossier src, et la fonction main est dans main.cpp (path = ./src/main.cpp)  
+Les tests se font dans hello_test.cc.
+Les fichiers sources doivent se trouver dans le dossier src, et la fonction main est dans JEPG.cpp (path = ./src/JPEG.cpp)  
 
 
 ## Pour pouvoir run un projet (jpeg ou hello_test) :
