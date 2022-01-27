@@ -22,6 +22,7 @@ private:
     /// Entier constant qui définit la taille des blocs (ici 8)
     const int N = 8;
 
+	int L,H;
 
     ///Méthode openBMP qui prend en argument le nom du fichier cible, qui l'ouvre et qui le stocke dans une matrice. 
     ///Le mode est initialement en RGB.

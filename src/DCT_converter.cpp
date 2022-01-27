@@ -57,7 +57,10 @@ DCT_Converter::DCT_Converter() {
 }
 
 Mat DCT_Converter::openBMP(string fileName) {
-    return imread(fileName);
+	Mat image = imread(fileName);
+	L = image.cols;
+	H = image.rows;
+    return image;
 }
 
 vector<Mat> DCT_Converter::getDCTMatrixConverted(string fileName) {
@@ -129,7 +132,7 @@ vector<Mat> DCT_converter::separateMatrix(Mat yiq_matrix) {
 	return blocks;
 }
 
-//fonction qui convertit l'image YIQ en RGB
+///fonction qui convertit l'image YIQ en RGB
 Mat DCT_Converter::RGB_conversion(Mat yiq_matrix)
 {
 	Mat image_RGB;
@@ -153,3 +156,19 @@ Mat DCT_Converter::RGB_conversion(Mat yiq_matrix)
 
 	return image_RGB;
 }
+
+Mat DCT_Converter::recombineMatrix(vector<Mat> split_matrix)
+{
+	Mat result;
+	/*for (int k=0; k<split_matrix.size(); k++)
+	{
+		for (int i=0; i<N; i++)
+		{
+			for(int j=0; j<N; j++)
+			{
+				
+			}
+		}
+	}*/
+	return result;
+} 
