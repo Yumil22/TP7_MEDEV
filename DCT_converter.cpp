@@ -1,4 +1,4 @@
-#include "DTC_converter.h"
+#include "DCT_converter.h"
 
 DCT_Converter::DCT_Converter() {
     float c[N];
