@@ -4,7 +4,12 @@ DCT_Converter::DCT_Converter() {
     float c[N];
     c[0] = 1/sqrt(2);
     for (int i = 1; i < N; i++) {
-        
+        c[i] = 1;
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            dct_matrix.at<float>(i,j) = c[j] * sqrt(2 / N) * cos((2 * i + 1) * j * M_PI / 2 / N);
+        }
     }
 }
 
