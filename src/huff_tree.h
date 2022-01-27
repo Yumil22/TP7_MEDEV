@@ -1,13 +1,12 @@
 #pragma once
 
 #include <vector>
-#include <cstddef>
 
 struct Huff_tree
 {
     Huff_tree* fils0 = nullptr;
     Huff_tree* fils1 = nullptr;
-    char val = '';
+    char val = ' ';
 };
 
 class Huffmann
@@ -16,7 +15,8 @@ public :
     Huff_tree* treeRoot;
     std::vector<std::byte> compressedMessage;
 
-    Huffmann(std::string);
+    Huffmann(std::string message);
+
     Huff_tree* getTreeRoot();
-    std::vector<std::byte> getByteCodes();
+    std::vector<bool> getByteCodes();
 };

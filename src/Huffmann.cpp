@@ -3,6 +3,8 @@
 Huffmann::Huffmann(std::string) {
 	treeRoot = new Huff_tree();
 	compressedMessage = {};
+
+
 }
 
 Huff_tree* Huffmann::getTreeRoot() {
