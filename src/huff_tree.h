@@ -20,4 +20,5 @@ public :
 
     Huff_tree* getTreeRoot(); // Renvoie la racine de l'arbre de Huffmann
     std::vector<std::vector<bool>> getByteCodes(); // Renvoie un vecteur contenant tous les messages compressés
+    float getCompressionRatio(); //Renvoie le taux de compression de l'opération
 };

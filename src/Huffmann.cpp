@@ -19,6 +19,11 @@ std::vector<std::vector<bool>> Huffmann::getByteCodes() {
 	return compressedMessages;
 }
 
+float Huffmann::getCompressionRatio()
+{
+    return sizeof(compressedMessages) / sizeof(messages);
+}
+
 string decodage_huff(vector<bool> list, Huff_tree* root){
     string res;
     int n = list.size();
