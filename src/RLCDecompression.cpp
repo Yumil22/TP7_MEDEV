@@ -1,3 +1,7 @@
+///
+/// \file RLCDecompression.cpp
+///	\brief Source de la fonction de décompression RLC
+///
 #include <iostream>
 #include <string>
 #include <stdio.h>
