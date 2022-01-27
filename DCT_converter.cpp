@@ -55,6 +55,9 @@ Mat DCT_Converter::deconvert(vector<Mat> dequantified_matrix){
 
 }
 
+/**
+ * Sépare la matrice d'entrée en blocs de taille N*N. On suppose que la matrice d'entrée a une taille multiple de N (lignes et colonnes).
+ */
 vector<Mat> DCT_converter::separateMatrix(Mat yiq_matrix) {
 	vector<Mat> blocks;
 	int n = yiq_matrix.rows/8;
@@ -62,6 +65,7 @@ vector<Mat> DCT_converter::separateMatrix(Mat yiq_matrix) {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < p; j++) {
 			Rect r(i*N, j*N, N, N);
+			// Copie le contenu de la matrice recouvert par le rectangle
 			Mat bloc = yiq_matrix(r).clone();
 			blocks.push_back(bloc);
 		}
