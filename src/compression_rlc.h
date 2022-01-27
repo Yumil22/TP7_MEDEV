@@ -33,6 +33,11 @@ std::vector<int> lecture(cv::Mat im);
 /// <returns></returns>
 std::string comp(std::vector<int> vec);
 
+/// <summary>
+/// Compresse un vecteur de matrices DTC 8*8 avec la methode RLC et renvoie un vecteur de leurs compressions
+/// </summary>
+/// <param name="Vecim"></param>
+/// <returns></returns>
 std::vector<std::string> compresstot(std::vector<cv::Mat> Vecim);
 
 
