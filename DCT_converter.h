@@ -13,7 +13,7 @@ class DCT_Converter{
 private:
     Mat dct_matrix;
     Mat t_dct_matrix;
-    Mat tgb_to_yiq;
+    Mat rgb_to_yiq;
     Mat yiq_to_rgb;
     const int N = 8;
 
@@ -24,7 +24,7 @@ private:
     Mat recombineMatrix(vector<Mat> split_matrix);
 
 public:
-    DCT_Converter()
+    DCT_Converter();
     vector<Mat> getDCTMatrixConverted(string fileName);
     Mat deconvert(vector<Mat> dequantified_matrix);
 };
