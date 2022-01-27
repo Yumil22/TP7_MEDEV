@@ -34,6 +34,12 @@ file(GLOB_RECURSE TESTS_FILES
 
 enable_testing()
 
+# main program part
+# Main project entry point
+file(GLOB SRC_MAIN
+    "src/JPEG.cpp"
+)
+
 # Main project sources, without main
 file(GLOB_RECURSE SRC_FILES
     "src/**.cpp"
@@ -56,11 +62,7 @@ include(GoogleTest)
 gtest_discover_tests(tests)
 
 
-# main program part
-# Main project entry point
-file(GLOB SRC_MAIN
-    "src/JPEG.cpp"
-)
+
 
 
 
