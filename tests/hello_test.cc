@@ -11,6 +11,5 @@ TEST(HelloTest, BasicAssertions) {
 // test pour la partie quantification
 TEST(tester_la_quantification_compilation, Gerer_les_valeurs) {
 	// on s'attend à ce que le résultat du calcul soit le bon
-	
-	
+
 }
