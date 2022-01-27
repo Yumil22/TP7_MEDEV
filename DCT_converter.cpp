@@ -25,6 +25,8 @@ Mat DCT_Converter::YIQ_conversion(Mat rgb_matrix)
 	return image_YIQ;
 }
 
+
+///On définit ici les matrices de DCT P et tP, ainsi que les matrices de conversion RGB <-> YIQ.
 DCT_Converter::DCT_Converter() {
     float c[N];
     c[0] = 1/sqrt(2);
@@ -37,6 +39,7 @@ DCT_Converter::DCT_Converter() {
         }
     }
 }
+
 
 Mat DCT_Converter::openBMP(string fileName) {
     return imread(fileName);
