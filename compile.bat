@@ -1,0 +1,1 @@
+cmake -S . -B build -D OpenCV_DIR=C:\Dev\OpenCV-4.5.2\Debug
