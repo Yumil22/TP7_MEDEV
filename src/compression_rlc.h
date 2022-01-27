@@ -10,12 +10,13 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 
-string compressionrlc(cv::Mat im);
+std::string compressionrlc(cv::Mat im);
 
-vector<int> lecture(cv::Mat im);
+std::vector<int> lecture(cv::Mat im);
 
-string comp(vector<int> vec);
+std::string comp(std::vector<int> vec);
 
 
 
