@@ -127,3 +127,13 @@ std::string comp(std::vector<int> v) {
 	}
 	return s;
 }
+
+std::vector<std::string> compresstot(std::vector<cv::Mat> Vecim) {
+	std::vector<std::string> vec = {};
+	std::string s;
+	for (int i = 0; i < std::size(Vecim); i++) {
+		s = compressionrlc(Vecim[i]);
+		vec.push_back(s);
+	}
+	return vec;
+}

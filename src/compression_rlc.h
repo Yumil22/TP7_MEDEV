@@ -33,6 +33,8 @@ std::vector<int> lecture(cv::Mat im);
 /// <returns></returns>
 std::string comp(std::vector<int> vec);
 
+std::vector<std::string> compresstot(std::vector<cv::Mat> Vecim);
+
 
 
 
