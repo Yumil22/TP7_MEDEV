@@ -11,9 +11,9 @@ Mat DCT_Converter::YIQ_conversion(Mat rgb_matrix)
 		{
 			for (int l = 0; l < 3; l++)
 			{
-				Y += rgb_to_yiq.at<float>(0, l) * rgb_matrix.at<Vec3b>(i, j)[l];
+				Q += rgb_to_yiq.at<float>(0, l) * rgb_matrix.at<Vec3b>(i, j)[l];
 				I += rgb_to_yiq.at<float>(1, l) * rgb_matrix.at<Vec3b>(i, j)[l];
-				Q += rgb_to_yiq.at<float>(2, l) * rgb_matrix.at<Vec3b>(i, j)[l];
+				Y += rgb_to_yiq.at<float>(2, l) * rgb_matrix.at<Vec3b>(i, j)[l];
 			}
 			image_YIQ.at<Vec3b>(i, j)[0] = Y;
 			image_YIQ.at<Vec3b>(i, j)[1] = I;
@@ -36,6 +36,20 @@ DCT_Converter::DCT_Converter() {
             dct_matrix.at<float>(i,j) = c[j] * sqrt(2 / N) * cos((2 * i + 1) * j * M_PI / 2 / N);
         }
     }
+
+	//initialisation de la mtrice rgb_to_yiq
+	rgb_to_yiq.at<float>(0, 0) = 0.211456;
+	rgb_to_yiq.at<float>(0, 1) = -0.522591;
+	rgb_to_yiq.at<float>(0, 2) = 0.31135;
+	rgb_to_yiq.at<float>(1, 0) = 0.595716f;
+	rgb_to_yiq.at<float>(1, 1) = -0.24453f;
+	rgb_to_yiq.at<float>(1, 2) = -0.321263;
+	rgb_to_yiq.at<float>(2, 0) = 0.2999f;
+	rgb_to_yiq.at<float>(2, 1) = 0.587f;
+	rgb_to_yiq.at<float>(2, 2) = 0.114f;
+
+	//initialiser la matrice yiq_to_rgb l'inverse de rgb_to_yiq
+	yiq_to_rgb = rgb_to_yiq.inv();
 }
 
 Mat DCT_Converter::openBMP(string fileName) {
