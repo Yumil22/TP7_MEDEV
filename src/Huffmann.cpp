@@ -2,8 +2,9 @@
 
 Huffmann::Huffmann(std::vector<std::string> messages) {
 	treeRoot = new Huff_tree();
-	compressedMessage = {};
+	compressedMessages = {};
 
+	// TODO compléter les constructeur
 
 }
 
