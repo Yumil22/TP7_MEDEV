@@ -33,7 +33,6 @@ private:
     ///Méthode separateMatrix qui prend en argument une matrice d'image en mode YIQ, et qui va la diviser en blocs de matrice de taille NxN (8x8).
     ///Les blocs ainsi obtenus seront stockés dans un vecteur de matrices.
     vector<Mat> separateMatrix(Mat yiq_matrix);
-
     ///MéthoderecombineMatrix qui prend en argument un vecteur de matrices blocs NxN YIQ, et qui les recombine lors de la décompression. 
     Mat recombineMatrix(vector<Mat> split_matrix);
 
