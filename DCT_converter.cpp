@@ -122,9 +122,9 @@ Mat DCT_Converter::RGB_conversion(Mat yiq_matrix)
 		{
 			for (int l = 0; l < 3; l++)
 			{
-				Y += yiq_to_rgb.at<float>(0, l) * yiq_matrix.at<Vec3b>(i, j)[l];
-				I += yiq_to_rgb.at<float>(1, l) * yiq_matrix.at<Vec3b>(i, j)[l];
-				Q += yiq_to_rgb.at<float>(2, l) * yiq_matrix.at<Vec3b>(i, j)[l];
+				R += yiq_to_rgb.at<float>(0, l) * yiq_matrix.at<Vec3b>(i, j)[l];
+				G += yiq_to_rgb.at<float>(1, l) * yiq_matrix.at<Vec3b>(i, j)[l];
+				B += yiq_to_rgb.at<float>(2, l) * yiq_matrix.at<Vec3b>(i, j)[l];
 			}
 			image_RGB.at<Vec3b>(i, j)[0] = R;
 			image_RGB.at<Vec3b>(i, j)[1] = G;
