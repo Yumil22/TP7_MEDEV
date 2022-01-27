@@ -6,6 +6,7 @@
 using namespace std;
 using namespace cv;
 
+/// CLASSE DCT_CONVERTER
 
 class DCT_Converter{
 
