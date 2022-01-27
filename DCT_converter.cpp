@@ -54,3 +54,18 @@ Mat DCT_Converter::deconvert(vector<Mat> dequantified_matrix){
 	return DCT_Reverse;
 
 }
+
+vector<Mat> DCT_converter::separateMatrix(Mat yiq_matrix) {
+	vector<Mat> blocks;
+	int n = yiq_matrix.rows/8;
+	int p = yiq_matrix.cols/8;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < p; j++) {
+			Rect r(i*N, j*N, N, N);
+			Mat bloc = yiq_matrix(r).clone();
+			blocks.push_back(bloc);
+		}
+	}
+
+	return blocks;
+}
