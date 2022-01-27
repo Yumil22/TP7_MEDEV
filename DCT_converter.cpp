@@ -40,13 +40,38 @@ vector<Mat> DCT_Converter::getDCTMatrixConverted(string fileName) {
 Mat DCT_Converter::deconvert(vector<Mat> dequantified_matrix){
 	Mat DCT_Reverse;
 	vector<Mat> DCT_Reverse_Matrixs;
+	Mat DCT_Reverse_Output;
+	Mat DCT_Reverse_Output_Y;
+	Mat DCT_Reverse_Output_I;
+	Mat DCT_Reverse_Output_Q;
 	//Pour chaque bloc de matrices contenu dans le vecteur dequantified_matrix, on applique la DCT inverse, et on stocke les nouveaux blocs dans le vecteur DCT_Reverse_Matrixs
 	for (int i=0;i<dequantified_matrix.size();i++){
-		Mat DCT_Reverse_Output;
-		multiply(dct_matrix, dequantified_matrix[i], DCT_Reverse_Output);
-		multiply(DCT_Reverse_Output, t_dct_matrix, DCT_Reverse_Output);
+		for (int j=0;j<dequantified_matrix[i].cols;j++){
+			for (int k=0;k<dequantified_matrix[i].rows;k++){
+				DCT_Reverse_Output_Y.at<float>(j,k)=dequantified_matrix[i].at<vec3b>(j,k)[0];
+				DCT_Reverse_Output_I.at<float>(j,k)=dequantified_matrix[i].at<vec3b>(j,k)[1];
+				DCT_Reverse_Output_Q.at<float>(j,k)=dequantified_matrix[i].at<vec3b>(j,k)[2];
+			}
+		}
+		multiply(dct_matrix, DCT_Reverse_Output_Y, DCT_Reverse_Output_Y);
+		multiply(dct_matrix, DCT_Reverse_Output_I, DCT_Reverse_Output_I);
+		multiply(dct_matrix, DCT_Reverse_Output_Q, DCT_Reverse_Output_Q);
+
+		multiply(DCT_Reverse_Output_Y, t_dct_matrix, DCT_Reverse_Output_Y);
+		multiply(DCT_Reverse_Output_I, t_dct_matrix, DCT_Reverse_Output_I);
+		multiply(DCT_Reverse_Output_Q, t_dct_matrix, DCT_Reverse_Output_Q);
+
+		for (int j=0;j<dequantified_matrix[i].cols;j++){
+			for (int k=0;k<dequantified_matrix[i].rows;k++){
+				DCT_Reverse_Output.at<vec3b>(j,k)[0]=DCT_Reverse_Output_Y.at<float>(j,k);
+				DCT_Reverse_Output.at<vec3b>(j,k)[1]=DCT_Reverse_Output_I.at<float>(j,k);
+				DCT_Reverse_Output.at<vec3b>(j,k)[2]=DCT_Reverse_Output_Q.at<float>(j,k);
+			}
+		}
+
 		DCT_Reverse_Matrixs.push_back(DCT_Reverse_Output);
 	}
+	
 	DCT_Reverse = recombineMatrix(DCT_Reverse_Matrixs);
 	DCT_Reverse = RGB_conversion(DCT_Reverse);
 
