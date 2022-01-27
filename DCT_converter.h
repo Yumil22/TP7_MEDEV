@@ -22,6 +22,7 @@ private:
     /// Entier constant qui définit la taille des blocs (ici 8)
     const int N = 8;
 
+
     ///Méthode openBMP qui prend en argument le nom du fichier cible, qui l'ouvre et qui le stocke dans une matrice. 
     ///Le mode est initialement en RGB.
     Mat openBMP(string fileName);
@@ -32,6 +33,8 @@ private:
     ///Méthode separateMatrix qui prend en argument une matrice d'image en mode YIQ, et qui va la diviser en blocs de matrice de taille NxN (8x8).
     ///Les blocs ainsi obtenus seront stockés dans un vecteur de matrices.
     vector<Mat> separateMatrix(Mat yiq_matrix);
+
+    // Décompression : Regrouper les matrices séparées
     Mat recombineMatrix(vector<Mat> split_matrix);
 
 public:
