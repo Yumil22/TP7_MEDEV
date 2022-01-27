@@ -34,21 +34,6 @@ file(GLOB_RECURSE TESTS_FILES
 
 enable_testing()
 
-# testing
-add_executable(
-  tests
-  ${TESTS_FILES}
-)
-# link google test to the executable
-target_link_libraries(
-  tests
-  gtest_main
-)
-
-include(GoogleTest)
-gtest_discover_tests(tests)
-
-
 # main program part
 # Main project entry point
 file(GLOB SRC_MAIN
@@ -60,6 +45,26 @@ file(GLOB_RECURSE SRC_FILES
     "src/**.cpp"
 )
 list(REMOVE_ITEM SRC_FILES ${SRC_MAIN})
+
+# testing
+add_executable(
+  tests
+  ${TESTS_FILES}
+  ${SRC_FILES}
+)
+# link google test to the executable
+target_link_libraries(
+  tests
+  gtest_main
+)
+
+include(GoogleTest)
+gtest_discover_tests(tests)
+
+
+
+
+
 
 file(GLOB_RECURSE HEADER_FILES
     "src/**.h"
@@ -79,3 +84,4 @@ MESSAGE(STATUS "Include dirs ${OpenCV_INCLUDE_DIRS}")
 MESSAGE(STATUS "LINK LIBRARIES ${OpenCV_LIBS}")
 include_directories(${OpenCV_INCLUDE_DIRS})
 target_link_libraries(jpeg ${OpenCV_LIBS})
+target_link_libraries(tests ${OpenCV_LIBS})
