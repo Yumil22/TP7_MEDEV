@@ -11,6 +11,7 @@ Huff_tree* Huffmann::getTreeRoot() {
 	return treeRoot;
 }
 
-std::vector<std::byte> Huffmann::getByteCodes() {
+td::vector<std::vector<bool>> Huffmann::getByteCodes() {
 	return compressedMessage;
 }
+

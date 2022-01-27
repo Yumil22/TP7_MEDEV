@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <string> 
 
 struct Huff_tree
 {
@@ -12,11 +13,11 @@ struct Huff_tree
 class Huffmann
 {
 public :
-    Huff_tree* treeRoot;
-    std::vector<std::byte> compressedMessage;
+    Huff_tree* treeRoot; // La racine de l'arbre de Huffmann
+    std::vector<std::vector<bool>> compressedMessages; // Vecteur contenant tous les messages compressés
 
-    Huffmann(std::string message);
+    Huffmann(std::vector<std::string> messages); // Prend en entrée un vecteur avec les messages non compressés correspondants aux différentes matrices 8*8
 
-    Huff_tree* getTreeRoot();
-    std::vector<bool> getByteCodes();
+    Huff_tree* getTreeRoot(); // Renvoie la racine de l'arbre de Huffmann
+    std::vector<std::vector<bool>> getByteCodes(); // Renvoie un vecteur contenant tous les messages compressés
 };
