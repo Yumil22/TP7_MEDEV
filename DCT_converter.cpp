@@ -33,6 +33,7 @@ Mat DCT_Converter::openBMP(string fileName) {
 }
 
 vector<Mat> DCT_Converter::getDCTMatrixConverted(string fileName) {
+    Mat image = openBMP(fileName);
     
 }
 

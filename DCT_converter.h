@@ -22,10 +22,19 @@ private:
     /// Entier constant qui définit la taille des blocs (ici 8)
     const int N = 8;
 
+    // Compression : Lecture de fichier image (BMP)
     Mat openBMP(string fileName);
+
+    // Compression : Convertir image RGB à YIQ
     Mat YIQ_conversion(Mat rgb_matrix);
+
+    // Décompresiion : Convertir image YIQ à RGB
     Mat RGB_conversion(Mat yiq_matrix);
+
+    // Compression : Découper matrice principale en taille NxN
     vector<Mat> separateMatrix(Mat yiq_matrix);
+
+    // Décompression : Regrouper les matrices séparées
     Mat recombineMatrix(vector<Mat> split_matrix);
 
 public:
